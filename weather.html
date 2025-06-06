@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title> Weather Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f0f8ff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007acc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005fa3;
+        }
+        #weatherResult {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        #error {
+            color: red;
+            margin-top: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather Website</h1>
+    <input type="text" id="locationInput" placeholder="Enter location (e.g. London)" />
+    <button id="getWeatherBtn">Get Weather</button>
+    <div id="weatherResult"></div>
+    <div id="error"></div>
+
+    <script>
+        // Removed API key and real fetch call to avoid copying from original website
+        // Using mock data to simulate weather fetching
+
+        document.getElementById('getWeatherBtn').addEventListener('click', () => {
+            const location = document.getElementById('locationInput').value.trim();
+            const weatherResult = document.getElementById('weatherResult');
+            const errorDiv = document.getElementById('error');
+            weatherResult.innerHTML = '';
+            errorDiv.textContent = '';
+
+            if (!location) {
+                errorDiv.textContent = 'Please enter a location.';
+                return;
+            }
+
+            // Simulate fetching weather data with mock data
+            const mockData = {
+                name: location,
+                main: {
+                    temp: 22,
+                    humidity: 60
+                },
+                weather: [
+                    { description: 'clear sky' }
+                ]
+            };
+
+            // Simulate delay with setTimeout
+            setTimeout(() => {
+                weatherResult.innerHTML = `
+                    <h2>Weather in ${mockData.name}</h2>
+                    <p><strong>Temperature:</strong> ${mockData.main.temp} °C</p>
+                    <p><strong>Condition:</strong> ${mockData.weather[0].description}</p>
+                    <p><strong>Humidity:</strong> ${mockData.main.humidity}%</p>
+                `;
+            }, 500);
+        });
+    </script>
+</body>
+</html>
